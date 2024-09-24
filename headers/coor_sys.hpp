@@ -3,22 +3,31 @@
 
 struct PointCoordinates
 {
-    int x;
-    int y;
+    float x;
+    float y;
 };
 
 class CoordinateSys
 {
-    int x_center;
-    int y_center;
+    float x_center_;
+    float y_center_;
+
+    float w_width_;
+    float w_height_;
 
 public:
-    CoordinateSys( int w_width, int w_height)
-        : x_center( w_width / 2), y_center( w_height / 2) {};
+    CoordinateSys( float init_w_width, float init_w_height)
+        : x_center_( init_w_width / 2), y_center_( init_w_height / 2), w_width_( init_w_width), w_height_( init_w_height) {};
     ~CoordinateSys() {};
 
+    PointCoordinates translateToPixels( float x, float y);
     PointCoordinates translateToPixels( const PointCoordinates &point) const;
     PointCoordinates translateFromPixels( const PointCoordinates &point) const;
+
+    float getWidth() const;
+    float getHeight() const;
+    float getXCenter() const;
+    float getYCenter() const;
 };
 
 #endif // COORDINATE_SYSTEM_FUNCTIONS

@@ -1,22 +1,28 @@
 #include "../../MyLibraries/headers/systemdata.h"
 #include <SFML/Graphics.hpp>
+#include "buttons.hpp"
 #include "gas_model.hpp"
 #include "graphlib.hpp"
-#include "molecule.hpp"
-#include "vector.hpp"
+#include <time.h>
+#include <buttons_manager.hpp>
 
 
 int main()
 {
-    GraphWindow window( 1400, 900);
-    GasModel model;
+    srand( (unsigned int)time( NULL));
 
-    model.addMolecule( Vector( 100.1, 100.1, 100, 100), MoleculeLightGreenOctagon);     // TODO blue
-    model.addMolecule( Vector( 200.2, 200, 200, 200), MoleculeYellowSquare);            // TODO red
+    GraphWindow window( 1400, 900);
+    GasModel model( &window.c_sys_);
+
+    ButtonsManager manager;
+    createButtons( manager, &model);
+
+    addManyMolecules( 10, model);
 
     while ( window.window_.isOpen() )
     {
         sf::Event event;
+        sf::Keyboard key;
         while ( window.window_.pollEvent( event) )
         {
             if ( event.type == sf::Event::Closed )
@@ -25,8 +31,13 @@ int main()
             }
         }
         window.clear();
+
+        manager.proceedButtons( &window, &event, &key);
+        manager.drawButtons( window);
+
         model.moveMolecules();
         model.drawMolecules( window);
+
         window.display();
     }
 

@@ -1,11 +1,14 @@
+#include "coor_sys.hpp"
 #include "vector.hpp"
 #include <cassert>
 #include <chrono>
 #include <molecule.hpp>
 
-Molecule::Molecule( const Vector init_move_vec, MoleculeType init_type)
-    :   move_vec_( init_move_vec), type_( init_type), last_draw_( getTime())
+Molecule::Molecule( const Vector init_move_vec, MoleculeType init_type, CoordinateSys *init_c_sys)
+    :   move_vec_( init_move_vec), type_( init_type), last_draw_( getTime()), c_sys_( init_c_sys)
 {
+    assert( init_c_sys );
+
     texture_ = new sf::Texture;
     sprite_ = new sf::Sprite;
     switch ( type_ )
@@ -21,7 +24,10 @@ Molecule::Molecule( const Vector init_move_vec, MoleculeType init_type)
     }
     sprite_->setTexture( *texture_);
     sprite_->setScale( MOLECULE_SCALE, MOLECULE_SCALE);
-    sprite_->setPosition( (float) move_vec_.getCoordinates().x_0, (float) move_vec_.getCoordinates().y_0);
+
+    PointCoordinates point = c_sys_->translateToPixels( {(float) move_vec_.getCoordinates().x_0, (float) move_vec_.getCoordinates().y_0});
+
+    sprite_->setPosition( point.x, point.y);
 }
 
 
@@ -47,10 +53,7 @@ void Molecule::move()
 
     double new_x_0 = coord.x_0 + ( coord.x - coord.x_0) * elapsed;
     double new_y_0 = coord.y_0 + ( coord.y - coord.y_0) * elapsed;
-
-    move_vec_.move( new_x_0, new_y_0);
-
-    sprite_->setPosition( (float) new_x_0, (float) new_y_0);
+    this->setCoordinates( new_x_0, new_y_0);
 
     last_draw_ = now;
 }
@@ -69,4 +72,15 @@ CenterCoord Molecule::getCenter() const
     VectorCoordinates coord = move_vec_.getCoordinates();
 
     return {coord.x_0, coord.y_0};
+}
+
+
+void Molecule::setCoordinates( double new_x_0, double new_y_0)
+{
+    PointCoordinates new_center = this->c_sys_->translateToPixels( {float( new_x_0),
+                                                                    float( new_y_0)});
+
+    move_vec_.move( new_x_0, new_y_0);
+
+    sprite_->setPosition( new_center.x, new_center.y);
 }
