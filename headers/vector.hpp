@@ -26,17 +26,19 @@ class Vector
 public:
     Vector( double init_x, double init_y, double init_x_0, double init_y_0, double init_z = 0, double init_z_0 = 0);
     ~Vector() {};
+    Vector( const Vector &vec);
 
     VectorCoordinates getCoordinates() const;
     double getLength();
     void setLength( double new_length);
+    void setNewCoordinates( const VectorCoordinates &coord);
 
     Vector &move( double new_x_0, double new_y_0, double new_z_0 = 0);
     void createEnding( VectorCoordinates *end_1, VectorCoordinates *end_2) const;
 
     Vector &operator/= ( double cf);
     Vector &operator!= ( Vector &vec);
-    Vector operator= ( const Vector &vec) const;
+    // Vector operator= ( const Vector &vec) const;
 
     Vector reflectNormal( Vector &normal);
 };

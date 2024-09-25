@@ -17,16 +17,23 @@ Vector::Vector( double init_x, double init_y, double init_x_0, double init_y_0, 
     is_length_real = false;
 }
 
+
+Vector::Vector( const Vector &vec)
+{
+    *this = Vector( vec.x, vec.y, vec.x_0, vec.y_0, vec.z, vec.z_0);
+}
+
+
 VectorCoordinates Vector::getCoordinates() const
 {
     return {x, y, z, x_0, y_0, z_0};
 }
 
 
-Vector Vector::operator= ( const Vector &vec) const
-{
-    return Vector( vec.x, vec.y, vec.x_0, vec.y_0, vec.z, vec.z_0);
-}
+// Vector Vector::operator= ( const Vector &vec) const
+// {
+//     return Vector( vec.x, vec.y, vec.x_0, vec.y_0, vec.z, vec.z_0);
+// }
 
 double Vector::getLength()
 {
@@ -220,4 +227,15 @@ Vector &Vector::operator!= ( Vector &/*vec*/)
     this->move( tmp_x_0, tmp_y_0);
 
     return *this;
+}
+
+
+void Vector::setNewCoordinates( const VectorCoordinates &coord)
+{
+    this->x = coord.x;
+    this->y = coord.y;
+    this->z = coord.z;
+    this->x_0 = coord.x_0;
+    this->y_0 = coord.y_0;
+    this->z_0 = coord.z_0;
 }

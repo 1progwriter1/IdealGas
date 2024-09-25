@@ -18,11 +18,13 @@ void GasModel::addRandomMolecule()
 {
     float x_0 = rand() % (int) this->c_sys_->getWidth();
     float y_0 = rand() % (int) this->c_sys_->getHeight();
-    float x   = float( rand() % 2001 - 1000) / 1000 + x_0;
-    float y   = float( rand() % 2001 - 1000) / 1000 + y_0;
+    float x   = float( rand() % 2001 - 1000) + x_0;
+    float y   = float( rand() % 2001 - 1000) + y_0;
     MoleculeType type = ( rand() % 2 == 0 ) ? MoleculeLightGreenOctagon : MoleculeYellowSquare;
 
-    Molecule *molecule = new Molecule( Vector( x, y, x_0, y_0), type, this->c_sys_);
+    PointCoordinates start = c_sys_->translateFromPixels( {x_0, y_0});
+    PointCoordinates end = c_sys_->translateFromPixels( {x, y});
+    Molecule *molecule = new Molecule( Vector( end.x, end.y, start.x, start.y), type, this->c_sys_);
     gas_.insert( gas_.end(), molecule);
 }
 
@@ -48,9 +50,9 @@ void GasModel::drawMolecules( GraphWindow &window)
 
 void GasModel::moveMolecules()
 {
-    for ( auto &i : gas_ )
+    for ( auto &molecule : gas_ )
     {
-        i->move();
+        molecule->move();
     }
 }
 

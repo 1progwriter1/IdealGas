@@ -7,7 +7,17 @@
 #include <SFML/Graphics.hpp>
 
 
-const float MOLECULE_SCALE = 1;
+enum LocationStatus
+{
+    LocationNormal = 0,
+    LocationRightEscape = 1,
+    LocationLeftEscape = 2,
+    LocationUpEscape = 3,
+    LocationDownEscape = 4,
+};
+
+
+const float MOLECULE_SCALE = 1.0f;
 
 
 enum MoleculeType
@@ -17,14 +27,7 @@ enum MoleculeType
 };
 
 
-struct CenterCoord
-{
-    double x;
-    double y;
-};
-
-
-class Molecule
+class Molecule  // second class
 {
     Vector move_vec_;
     MoleculeType type_;
@@ -43,9 +46,13 @@ public:
     void move();
     const sf::Sprite &getSprite() const;
     void setCoordinates( double new_x_0, double new_y_0);
-    CenterCoord getCenter() const;
+    PointCoordinates getCenter() const;
+    Vector reflectFromWall( const PointCoordinates &new_center, CoordinateSys *c_sys, LocationStatus status);
+    void setNewMoveVec( const Vector &vec);
 };
 
 long long getTime();
+LocationStatus isOutOfTheWindow( const PointCoordinates &new_center, CoordinateSys *c_sys);
+PointCoordinates findReflectPoint( const PointCoordinates &old_center, const PointCoordinates &new_center, CoordinateSys *c_sys, LocationStatus status);
 
 #endif // GAS_MOLECULE
