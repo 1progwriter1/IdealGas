@@ -1,16 +1,17 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required( VERSION 3.10)
 
-set(CMAKE_CXX_STANDARD 20)
+set( CMAKE_CXX_STANDARD 20)
 
-project(IdealGas)
+project( IdealGas)
 
-file(GLOB_RECURSE SOURCES src/*.cpp)
-
-add_executable(a.out src/main.cpp)#${SOURCES})
+file( GLOB_RECURSE SOURCES src/*.cpp)
 
 
-target_link_directories(a.out PRIVATE /opt/homebrew/lib/)
-target_link_libraries(a.out PRIVATE sfml-graphics sfml-window sfml-system)
+add_executable(a.out ${SOURCES})
+
+
+target_link_directories( a.out PRIVATE /opt/homebrew/lib/)
+target_link_libraries( a.out PRIVATE sfml-graphics sfml-window sfml-system)
 
 include_directories( headers)
 include_directories( /opt/homebrew/include/)
@@ -24,5 +25,5 @@ add_compile_options( -D _DEBUG -ggdb3 -std=c++20 -O0 -Wall -Wextra -Weffc++ -Wc+
 		-fstack-protector -fstrict-overflow -fno-omit-frame-pointer -fPIE -Werror=vla)
 # -Wsuggest-override
 
-add_compile_options(-fsanitize=address,alignment)
-add_link_options(-fsanitize=address,alignment)
+add_compile_options( -fsanitize=address,alignment)
+add_link_options( -fsanitize=address,alignment)

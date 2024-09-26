@@ -1,10 +1,10 @@
-#include "buttons.hpp"
-#include "abutton.hpp"
+#include "view/buttons.hpp"
+#include "view/abutton.hpp"
 #include <cstddef>
 #include <cstdio>
 #include <cassert>
-#include "buttons_img.hpp"
-#include "gas_model.hpp"
+#include "view/buttons_img.hpp"
+#include "math_model/gas_model.hpp"
 
 
 Button::Button( const ButtonData &init_data, ButtonId init_id, GasModel *model)

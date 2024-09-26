@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <cstddef>
 #include "buttons_manager.hpp"
-#include "gas_model.hpp"
+#include "math_model/gas_model.hpp"
 
 
 enum ButtonId

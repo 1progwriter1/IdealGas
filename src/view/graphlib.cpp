@@ -1,8 +1,7 @@
-#include "graphlib.hpp"
-#include "coor_sys.hpp"
+#include "view/graphlib.hpp"
+#include "sys/coor_sys.hpp"
 #include <cstddef>
 #include <sys/_types/_size_t.h>
-#include <vector>
 #include <assert.h>
 
 GraphWindow::GraphWindow( unsigned int init_width, unsigned int init_height, const char *label)

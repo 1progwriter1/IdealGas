@@ -1,7 +1,7 @@
 #ifndef GRAPH_LIB_FUNCTIONS
 #define GRAPH_LIB_FUNCTIONS
 
-#include "coor_sys.hpp"
+#include "sys/coor_sys.hpp"
 #include <SFML/Graphics.hpp>
 #include <cstddef>
 

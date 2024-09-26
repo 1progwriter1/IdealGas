@@ -1,16 +1,16 @@
 #ifndef IDEAL_GAS_MODEL
 #define IDEAL_GAS_MODEL
 
-#include "coor_sys.hpp"
-#include <cstddef>
-#include <molecules.hpp>
+
 #include <list>
-#include <vector.hpp>
-#include <graphlib.hpp>
+#include <math_model/amolecule.hpp>
+#include <math_model/molecules.hpp>
+
 
 class GasModel
 {
-    std::list<Molecule *> gas_;
+    std::list<AMolecule *> gas_;
+
 public:
     GasModel( CoordinateSys *c_sys)
         :   c_sys_( c_sys) {};
@@ -19,10 +19,9 @@ public:
     CoordinateSys *c_sys_;
 
     void moveMolecules();
-    void addMolecule( const Vector init_move_vec, MoleculeType init_type);
-    void drawMolecules( GraphWindow &window);
+    AMolecule *addMolecule( const Vector init_move_vec, MoleculeType init_type);
 
-    void addRandomMolecule();
+    AMolecule *addRandomMolecule();
     void removeMolecule();
 };
 

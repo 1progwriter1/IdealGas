@@ -1,30 +1,26 @@
-#include "systemdata.h"
-#include <SFML/Graphics.hpp>
-// #include "view/buttons.hpp"
-// #include "gas_model.hpp"
-// #include "graphlib.hpp"
-// #include <buttons_manager.hpp>
+#include <systemdata.h>
+#include <view/view.hpp>
+#include <controller/controller.hpp>
+#include <math_model/gas_model.hpp>
+#include <view/windows.hpp>
 
 // TODO class diagram
 
 int main()
 {
-    sf::RenderWindow window( sf::VideoMode( 800, 600), "hello");
+    View view( 1400, 900);
 
-    while ( window.isOpen() )
-    {
-        sf::Event event;
-        sf::Keyboard key;
-        while ( window.pollEvent( event) )
-        {
-            if ( event.type == sf::Event::Closed )
-            {
-                window.close();
-            }
-        }
+    GasModel model( &dynamic_cast<WindowMolecules *>( view.getWindow())->getCSys());
 
-        window.display();
-    }
+    Controller ctrl( &view, &model);
+
+//     while ( ctrl.isOver() )
+//     {
+//         ctrl.proceedButtons();
+//         ctrl.proceedModel();
+//
+//         ctr.draw();
+//     }
 
     return SUCCESS;
 }

@@ -2,15 +2,56 @@
 #define ABSTRACT_MOLECULE
 
 
+#include <sys/vector.hpp>
+#include <sys/coor_sys.hpp>
+#include <view/view.hpp>
+
+
+enum LocationStatus
+{
+    LocationNormal = 0,
+    LocationRightEscape = 1,
+    LocationLeftEscape = 2,
+    LocationUpEscape = 3,
+    LocationDownEscape = 4,
+};
+
+
+
+struct ReflectData
+{
+    PointCoordinates new_center;
+    PointCoordinates old_center;
+    LocationStatus status;
+    CoordinateSys *c_sys;
+};
+
+
 class AMolecule
 {
-public:
-    AMolecule() = default;
-    virtual ~AMolecule() = default;
+protected:
+    Vector move_vec_;
+    long long last_draw_;
+    float radius_;
+    float weight_;
 
-    virtual void draw();
-    virtual void move();
+public:
+    AMolecule( Vector init_move_vec, float init_radius, float init_weight);
+    virtual ~AMolecule() {};
+
+    virtual void draw( View *view) {};
+
+    void move( CoordinateSys *c_sys);
+    PointCoordinates getCenter() const;
+
+private:
+    Vector reflectFromWall( ReflectData &data);
+    LocationStatus isOutOfTheWindow( ReflectData &data);
+    PointCoordinates findReflectPoint( ReflectData &data);
 };
+
+
+long long getTime();
 
 
 #endif // ABSTRACT_MOLECULE
