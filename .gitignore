@@ -5,3 +5,5 @@ test.cpp
 *.json
 *.cache/*
 *.DS_Store
+obj/
+build/

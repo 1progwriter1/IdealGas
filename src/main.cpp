@@ -1,6 +1,6 @@
-#include "../../MyLibraries/headers/systemdata.h"
+#include <systemdata.h>
 #include <SFML/Graphics.hpp>
-#include "buttons.hpp"
+#include "view/buttons.hpp"
 #include "gas_model.hpp"
 #include "graphlib.hpp"
 #include <time.h>
@@ -21,7 +21,7 @@ int main()
     createButtons( manager, &model);
 
     addManyMolecules( 10, model);
-    // model.addMolecule( Vector( 100, 100, 0, 0), MoleculeLightGreenOctagon);
+    model.addMolecule( Vector( 100, 100, 0, 0), MoleculeLightGreenOctagon);
 
     while ( window.window_.isOpen() )
     {
