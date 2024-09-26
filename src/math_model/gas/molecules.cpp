@@ -2,8 +2,21 @@
 #include "vector.hpp"
 #include <cassert>
 #include <chrono>
-#include <cstdio>
-#include <molecule.hpp>
+#include <molecules.hpp>
+
+
+const float MOLECULE_OCTAGON_R = 8.f;
+const float MOLECULE_SQUARE_R = 12.f;
+
+
+MoleculeOctagon::MoleculeOctagon( sf::Color init_color/*sf::Color( 255, 51, 51)*/)
+    :   molecule_( MOLECULE_OCTAGON_R, 8), color_( init_color)
+{}
+
+
+MoleculeSquare::MoleculeSquare( sf::Color init_color/*sf::Color( 51, 153, 255, 255)*/)
+    :   molecule_( MOLECULE_SQUARE_R, 4), color_( init_color)
+{}
 
 
 Molecule::Molecule( const Vector init_move_vec, MoleculeType init_type, CoordinateSys *init_c_sys)

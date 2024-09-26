@@ -1,7 +1,6 @@
 #include "coor_sys.hpp"
-#include "molecule.hpp"
+#include "molecules.hpp"
 #include "vector.hpp"
-#include <cassert>
 #include <cstddef>
 #include <cstdlib>
 #include <gas_model.hpp>
