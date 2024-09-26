@@ -1,46 +1,27 @@
-#include <systemdata.h>
+#include "systemdata.h"
 #include <SFML/Graphics.hpp>
-#include "view/buttons.hpp"
-#include "gas_model.hpp"
-#include "graphlib.hpp"
-#include <time.h>
-#include <buttons_manager.hpp>
-
+// #include "view/buttons.hpp"
+// #include "gas_model.hpp"
+// #include "graphlib.hpp"
+// #include <buttons_manager.hpp>
 
 // TODO class diagram
 
-
 int main()
 {
-    srand( (unsigned int)time( NULL));
+    sf::RenderWindow window( sf::VideoMode( 800, 600), "hello");
 
-    GraphWindow window( 1400, 900);
-    GasModel model( &window.c_sys_);
-
-    ButtonsManager manager;
-    createButtons( manager, &model);
-
-    addManyMolecules( 10, model);
-    model.addMolecule( Vector( 100, 100, 0, 0), MoleculeLightGreenOctagon);
-
-    while ( window.window_.isOpen() )
+    while ( window.isOpen() )
     {
         sf::Event event;
         sf::Keyboard key;
-        while ( window.window_.pollEvent( event) )
+        while ( window.pollEvent( event) )
         {
             if ( event.type == sf::Event::Closed )
             {
-                window.window_.close();
+                window.close();
             }
         }
-        window.clear();
-
-        manager.proceedButtons( &window, &event, &key);
-        manager.drawButtons( window);
-
-        model.moveMolecules();
-        model.drawMolecules( window);
 
         window.display();
     }

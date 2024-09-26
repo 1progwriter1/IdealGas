@@ -7,3 +7,4 @@ test.cpp
 *.DS_Store
 obj/
 build/
+.vscode

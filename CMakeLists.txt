@@ -6,16 +6,17 @@ project(IdealGas)
 
 file(GLOB_RECURSE SOURCES src/*.cpp)
 
-add_executable(a.out ${SOURCES})
+add_executable(a.out src/main.cpp)#${SOURCES})
 
-add_link_options( -lsfml-graphics -lsfml-window -lsfml-system)
-link_directories( /opt/homebrew/lib)
+
+target_link_directories(a.out PRIVATE /opt/homebrew/lib/)
+target_link_libraries(a.out PRIVATE sfml-graphics sfml-window sfml-system)
 
 include_directories( headers)
 include_directories( /opt/homebrew/include/)
 include_directories( ../MyLibraries/headers/)
 
-add_compile_options(-D _DEBUG -ggdb3 -std=c++20 -O0 -Wall -Wextra -Weffc++ -Wc++14-compat -Wmissing-declarations -Wcast-qual
+add_compile_options( -D _DEBUG -ggdb3 -std=c++20 -O0 -Wall -Wextra -Weffc++ -Wc++14-compat -Wmissing-declarations -Wcast-qual
 		-Wchar-subscripts -Wconversion -Wctor-dtor-privacy -Wempty-body -Wfloat-equal -Wformat-nonliteral -Wformat-security -Wformat=2 -Winline
 		-Wnon-virtual-dtor -Woverloaded-virtual -Wpacked -Wpointer-arith -Winit-self -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo
 		-Wstrict-overflow=2 -Wswitch-default -Wswitch-enum -Wundef -Wunreachable-code -Wunused -Wvariadic-macros
@@ -23,5 +24,5 @@ add_compile_options(-D _DEBUG -ggdb3 -std=c++20 -O0 -Wall -Wextra -Weffc++ -Wc++
 		-fstack-protector -fstrict-overflow -fno-omit-frame-pointer -fPIE -Werror=vla)
 # -Wsuggest-override
 
-add_compile_options(-fsanitize=address)
-add_link_options(-fsanitize=address)
+add_compile_options(-fsanitize=address,alignment)
+add_link_options(-fsanitize=address,alignment)
