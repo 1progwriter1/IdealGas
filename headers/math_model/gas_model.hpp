@@ -3,7 +3,7 @@
 
 #include "coor_sys.hpp"
 #include <cstddef>
-#include <molecule.hpp>
+#include <molecules.hpp>
 #include <list>
 #include <vector.hpp>
 #include <graphlib.hpp>

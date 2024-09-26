@@ -26,6 +26,26 @@ enum MoleculeType
     MoleculeYellowSquare      = 1,  // TODO red
 };
 
+class MoleculeSquare
+{
+    sf::CircleShape molecule_;
+    sf::Color color_;
+public:
+    MoleculeSquare( sf::Color init_color = sf::Color( 255, 51, 51));
+    ~MoleculeSquare() = default;
+};
+
+
+class MoleculeOctagon
+{
+    sf::CircleShape molecule_;
+    sf::Color color_;
+public:
+    MoleculeOctagon( sf::Color init_color = sf::Color( 51, 153, 255, 255));
+    ~MoleculeOctagon() = default;
+};
+
+
 
 class Molecule  // second class
 {
