@@ -2,8 +2,10 @@
 #define BUTTONS_MANAGER
 
 #include "abutton.hpp"
-#include "graphlib.hpp"
+#include <view/awindow.hpp>
 #include <vector>
+#include <math_model/gas_model.hpp>
+
 
 class ButtonsManager
 {
@@ -13,12 +15,11 @@ public:
     ButtonsManager();
     ~ButtonsManager();
 
-    bool needDrawSphere();
-
     void addButton( AButton *new_button);
-    void drawButtons( GraphWindow &window);
+    void drawButtons( sf::RenderWindow &window);
 
-    void proceedButtons( GraphWindow *window, sf::Event *event, sf::Keyboard *key);
+    void proceedButtons( const sf::RenderWindow &window, const sf::Event &event, const sf::Keyboard &key, GasModel *model);
 };
+
 
 #endif // BUTTONS_MANAGER

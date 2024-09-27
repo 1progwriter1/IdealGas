@@ -46,14 +46,14 @@ void View::draw()
 {
     for ( const auto &window : windows_ )
     {
-        window->draw();
+        window->draw( main_window_);
     }
 }
 
 
 void createWindows( View &view, std::list<AMolecule *> *gas)
 {
-    WindowMolecules *molecules = new WindowMolecules( 1400, 900, gas);
+    WindowMolecules *molecules = new WindowMolecules( view.getWidth(), view.getHeight(), gas);
     view.addWindow( molecules);
 }
 
@@ -75,4 +75,16 @@ sf::RenderWindow &View::getMainWindow()
 AWindow *View::getWindow()
 {
     return windows_.front();
+}
+
+
+const std::list<AWindow *> &View::getWindows() const
+{
+    return windows_;
+}
+
+
+const ButtonsManager &View::getButtonsManager() const
+{
+    return manager_;
 }

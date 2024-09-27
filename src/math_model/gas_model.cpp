@@ -1,7 +1,18 @@
+#include "math_model/molecules.hpp"
 #include <cstdlib>
 #include <sys/vector.hpp>
 #include <math_model/gas_model.hpp>
 #include <cassert>
+
+
+AMolecule *GasModel::addMolecule( AMolecule *new_molecule)
+{
+    assert( new_molecule );
+
+    gas_.insert( gas_.end(), new_molecule);
+
+    return new_molecule;
+}
 
 
 AMolecule *GasModel::addMolecule( const Vector init_move_vec, MoleculeType init_type)
@@ -26,8 +37,8 @@ AMolecule *GasModel::addMolecule( const Vector init_move_vec, MoleculeType init_
 
 AMolecule *GasModel::addRandomMolecule()
 {
-    float x_0 = rand() % (int) this->c_sys_->getWidth();
-    float y_0 = rand() % (int) this->c_sys_->getHeight();
+    float x_0 = rand() % (int) c_sys_->getWidth();
+    float y_0 = rand() % (int) c_sys_->getHeight();
     float x   = float( rand() % 2001 - 1000) + x_0;
     float y   = float( rand() % 2001 - 1000) + y_0;
     MoleculeType type = ( rand() % 2 == 0 ) ? MoleculeTypeSquare : MoleculeTypeOctagon;
@@ -36,6 +47,15 @@ AMolecule *GasModel::addRandomMolecule()
     PointCoordinates end = c_sys_->translateFromPixels( {x, y});
 
     return addMolecule( Vector( x, y, x_0, y_0), type);
+}
+
+
+void addManyMolecules( size_t count, GasModel &model)
+{
+    for ( size_t i = 0; i < count; i++ )
+    {
+        model.addRandomMolecule();
+    }
 }
 
 

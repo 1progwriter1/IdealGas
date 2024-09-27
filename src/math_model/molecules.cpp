@@ -19,17 +19,13 @@ MoleculeSquare::MoleculeSquare( Vector init_move_vec, sf::Color init_color/*sf::
 {}
 
 
-void MoleculeOctagon::draw( View *view)
+void MoleculeOctagon::draw( sf::RenderWindow &window)
 {
-    assert( view );
-
-    view->getMainWindow().draw( molecule_);
+    window.draw( molecule_);
 }
 
 
-void MoleculeSquare::draw( View *view)
+void MoleculeSquare::draw( sf::RenderWindow &window)
 {
-    assert( view );
-
-    view->getMainWindow().draw( molecule_);
+    window.draw( molecule_);
 }

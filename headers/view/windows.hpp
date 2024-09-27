@@ -5,6 +5,7 @@
 #include <view/awindow.hpp>
 #include <list>
 #include <math_model/amolecule.hpp>
+#include <view/buttons_manager.hpp>
 
 
 class WindowMolecules : public AWindow
@@ -14,13 +15,14 @@ class WindowMolecules : public AWindow
     std::list<AMolecule *> *gas_;
 
     CoordinateSys c_sys_;
+    ButtonsManager manager;
 
 public:
     WindowMolecules( unsigned int init_width, unsigned int init_height, std::list<AMolecule *> *init_gas);
     ~WindowMolecules() = default;
 
     CoordinateSys &getCSys();
-    void draw( View *view);
+    void draw( sf::RenderWindow &window);
 };
 
 

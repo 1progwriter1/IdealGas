@@ -10,13 +10,11 @@ WindowMolecules::WindowMolecules( unsigned int init_width, unsigned int init_hei
 }
 
 
-void WindowMolecules::draw( View *view)
+void WindowMolecules::draw( sf::RenderWindow &window)
 {
-    assert( view );
-
     for ( const auto molecule : *gas_ )
     {
-        molecule->draw( view);
+        molecule->draw( window);
     }
 }
 

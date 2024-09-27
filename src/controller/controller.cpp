@@ -8,3 +8,9 @@ Controller::Controller( View *init_view, GasModel *init_model)
     assert( init_view );
     assert( init_model );
 }
+
+
+bool Controller::isOver()
+{
+    return !view_->getMainWindow().isOpen();
+}

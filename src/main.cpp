@@ -14,13 +14,26 @@ int main()
 
     Controller ctrl( &view, &model);
 
-//     while ( ctrl.isOver() )
-//     {
-//         ctrl.proceedButtons();
-//         ctrl.proceedModel();
-//
-//         ctr.draw();
-//     }
+    while ( !ctrl.isOver() )
+    {
+        sf::Event event;
+        sf::Keyboard key;
+        while ( view.getMainWindow().pollEvent( event) )
+        {
+            if ( event.type == sf::Event::Closed )
+            {
+                view.getMainWindow().close();
+            }
+        }
+
+        for ( const auto &window : view.getWindows() )
+        {
+            window->draw( view.getMainWindow());
+        }
+        model.moveMolecules();
+
+        view.draw();
+    }
 
     return SUCCESS;
 }

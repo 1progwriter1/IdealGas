@@ -8,13 +8,6 @@
 #include <math_model/amolecule.hpp>
 
 
-enum MoleculeType
-{
-    MoleculeTypeSquare = 0,
-    MoleculeTypeOctagon = 1,
-};
-
-
 class MoleculeSquare : public AMolecule
 {
     sf::CircleShape molecule_;
@@ -25,7 +18,7 @@ public:
     MoleculeSquare( Vector init_move_vec, sf::Color init_color = sf::Color( 255, 51, 51));
     ~MoleculeSquare() = default;
 
-    void draw( View *view);
+    void draw( sf::RenderWindow &window);
 };
 
 
@@ -39,7 +32,7 @@ public:
     MoleculeOctagon( Vector init_move_vec, sf::Color init_color = sf::Color( 51, 153, 255, 255));
     ~MoleculeOctagon() = default;
 
-    void draw( View *view);
+    void draw( sf::RenderWindow &window);
 };
 
 

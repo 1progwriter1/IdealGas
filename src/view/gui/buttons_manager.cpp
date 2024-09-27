@@ -28,40 +28,36 @@ void ButtonsManager::addButton( AButton *new_button)
 }
 
 
-void ButtonsManager::drawButtons( GraphWindow &window)
+void ButtonsManager::drawButtons( sf::RenderWindow &window)
 {
     size_t size = buttons_.size();
     for ( size_t i = 0; i < size; i++ )
     {
-        buttons_[i]->draw( window.window_);
+        buttons_[i]->draw( window);
     }
 }
 
 
-void ButtonsManager::proceedButtons( GraphWindow *window, sf::Event *event, sf::Keyboard *key)
+void ButtonsManager::proceedButtons( const sf::RenderWindow &window, const sf::Event &event, const sf::Keyboard &key, GasModel *model)
 {
-    assert( window );
-    assert( event );
-    assert( key );
-
     size_t size = buttons_.size();
-    if ( event->type == sf::Event::MouseButtonPressed )
+    if ( event.type == sf::Event::MouseButtonPressed )
     {
         for ( size_t i = 0; i < size; i++ )
         {
-            buttons_[i]->onClick( sf::Mouse::getPosition( window->window_), event, key);
+            buttons_[i]->onClick( sf::Mouse::getPosition( window), event, key);
         }
-    } else if ( event->type == sf::Event::MouseButtonReleased )
+    } else if ( event.type == sf::Event::MouseButtonReleased )
     {
         for ( size_t i = 0; i < size; i++ )
         {
-            buttons_[i]->onRelease( sf::Mouse::getPosition( window->window_), event, key);
+            buttons_[i]->onRelease( sf::Mouse::getPosition( window), event, key);
         }
     } else
     {
         for ( size_t i = 0; i < size; i++ )
         {
-            buttons_[i]->onHover( sf::Mouse::getPosition( window->window_), event, key);
+            buttons_[i]->onHover( sf::Mouse::getPosition( window), event, key);
         }
     }
 }

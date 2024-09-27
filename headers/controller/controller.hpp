@@ -4,16 +4,23 @@
 
 #include <view/view.hpp>
 #include <math_model/gas_model.hpp>
+#include <view/buttons_manager.hpp>
 
 
 class Controller
 {
     View *view_;
     GasModel *model_;
+    ButtonsManager manager;
 
 public:
     Controller( View *init_view, GasModel *init_model);
     Controller() = default;
+
+    bool isOver();
+    void proceedButtons();
+    void proceedModel();
+
 };
 
 

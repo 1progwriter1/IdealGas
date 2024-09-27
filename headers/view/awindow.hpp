@@ -2,13 +2,16 @@
 #define ABSTRACT_WINDOW
 
 
+#include <SFML/Graphics.hpp>
+
+
 class AWindow
 {
 public:
     AWindow() = default;
     virtual ~AWindow() = default;
 
-    virtual void draw() {};
+    virtual void draw( sf::RenderWindow &window) = 0;
 };
 
 

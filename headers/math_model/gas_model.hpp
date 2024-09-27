@@ -4,7 +4,6 @@
 
 #include <list>
 #include <math_model/amolecule.hpp>
-#include <math_model/molecules.hpp>
 
 
 class GasModel
@@ -19,10 +18,10 @@ public:
     CoordinateSys *c_sys_;
 
     void moveMolecules();
-    AMolecule *addMolecule( const Vector init_move_vec, MoleculeType init_type);
-
-    AMolecule *addRandomMolecule();
+    AMolecule *addMolecule( AMolecule *molecule);
     void removeMolecule();
+    AMolecule *addRandomMolecule();
+    AMolecule *addMolecule( const Vector init_move_vec, MoleculeType init_type);
 };
 
 
