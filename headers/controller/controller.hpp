@@ -11,7 +11,6 @@ class Controller
 {
     View *view_;
     GasModel *model_;
-    ButtonsManager manager;
 
 public:
     Controller( View *init_view, GasModel *init_model);

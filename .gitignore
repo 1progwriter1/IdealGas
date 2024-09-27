@@ -8,3 +8,7 @@ test.cpp
 obj/
 build/
 .vscode
+Doxyfile
+docs/
+latex/
+html/

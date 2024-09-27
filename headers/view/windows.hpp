@@ -15,7 +15,6 @@ class WindowMolecules : public AWindow
     std::list<AMolecule *> *gas_;
 
     CoordinateSys c_sys_;
-    ButtonsManager manager;
 
 public:
     WindowMolecules( unsigned int init_width, unsigned int init_height, std::list<AMolecule *> *init_gas);
