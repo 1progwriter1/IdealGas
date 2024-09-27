@@ -14,7 +14,7 @@ void WindowMolecules::draw( sf::RenderWindow &window)
 {
     for ( const auto molecule : *gas_ )
     {
-        molecule->draw( window);
+        molecule->draw( window, c_sys_);
     }
 }
 

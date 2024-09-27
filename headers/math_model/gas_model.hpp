@@ -22,6 +22,7 @@ public:
     void removeMolecule();
     AMolecule *addRandomMolecule();
     AMolecule *addMolecule( const Vector init_move_vec, MoleculeType init_type);
+    std::list<AMolecule *> *getGas();
 };
 
 

@@ -45,7 +45,7 @@ public:
     AMolecule( Vector init_move_vec, float init_radius, float init_weight);
     virtual ~AMolecule() {};
 
-    virtual void draw( sf::RenderWindow &window) {};
+    virtual void draw( sf::RenderWindow &window, CoordinateSys &c_sys) = 0;
 
     void move( CoordinateSys *c_sys);
     PointCoordinates getCenter() const;

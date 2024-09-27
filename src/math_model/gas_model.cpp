@@ -3,6 +3,7 @@
 #include <sys/vector.hpp>
 #include <math_model/gas_model.hpp>
 #include <cassert>
+#include <cstdio>
 
 
 AMolecule *GasModel::addMolecule( AMolecule *new_molecule)
@@ -46,7 +47,7 @@ AMolecule *GasModel::addRandomMolecule()
     PointCoordinates start = c_sys_->translateFromPixels( {x_0, y_0});
     PointCoordinates end = c_sys_->translateFromPixels( {x, y});
 
-    return addMolecule( Vector( x, y, x_0, y_0), type);
+    return addMolecule( Vector( end.x, end.y, start.x, start.y), type);
 }
 
 
@@ -75,4 +76,10 @@ void GasModel::moveMolecules()
     {
         molecule->move( c_sys_);
     }
+}
+
+
+std::list<AMolecule *> *GasModel::getGas()
+{
+    return &gas_;
 }

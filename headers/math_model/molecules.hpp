@@ -18,7 +18,7 @@ public:
     MoleculeSquare( Vector init_move_vec, sf::Color init_color = sf::Color( 255, 51, 51));
     ~MoleculeSquare() = default;
 
-    void draw( sf::RenderWindow &window);
+    void draw( sf::RenderWindow &window, CoordinateSys &c_sys);
 };
 
 
@@ -32,7 +32,7 @@ public:
     MoleculeOctagon( Vector init_move_vec, sf::Color init_color = sf::Color( 51, 153, 255, 255));
     ~MoleculeOctagon() = default;
 
-    void draw( sf::RenderWindow &window);
+    void draw( sf::RenderWindow &window, CoordinateSys &c_sys);
 };
 
 

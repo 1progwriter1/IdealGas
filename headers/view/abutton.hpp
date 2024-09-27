@@ -14,9 +14,9 @@ public:
     AButton( int init_x, int init_y);
     virtual ~AButton();
 
-    virtual void onClick  ( sf::Vector2i mouse_pos, const sf::Event &event, const sf::Keyboard &key) {};
-    virtual void onHover  ( sf::Vector2i mouse_pos, const sf::Event &event, const sf::Keyboard &key) {};
-    virtual void onRelease( sf::Vector2i mouse_pos, const sf::Event &event, const sf::Keyboard &key) {};
+    virtual void onClick  ( sf::Vector2i mouse_pos, const sf::Event &event, const sf::Keyboard &key) = 0;
+    virtual void onHover  ( sf::Vector2i mouse_pos, const sf::Event &event, const sf::Keyboard &key) = 0;
+    virtual void onRelease( sf::Vector2i mouse_pos, const sf::Event &event, const sf::Keyboard &key) = 0;
 
     virtual void draw( sf::RenderWindow &window) = 0;
 

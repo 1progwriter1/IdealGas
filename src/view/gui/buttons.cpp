@@ -70,19 +70,20 @@ bool Button::isOnFocus( sf::Vector2i mouse_pos)
             data_.pos_y <= mouse_pos.y && mouse_pos.y <= data_.pos_y + data_.height;
 }
 
-void Button::onHover( sf::Vector2i mouse_pos, sf::Event */*event*/, sf::Keyboard */*key*/)
+void Button::onHover( sf::Vector2i mouse_pos, const sf::Event &/*event*/, const sf::Keyboard &/*key*/)
 {
-
     if ( this->isOnFocus( mouse_pos) )
+    {
         this->setState( OnHover_);
+    }
     else
+    {
         this->setState( Normal_);
+    }
 }
 
-void Button::onClick( sf::Vector2i mouse_pos, sf::Event */*event*/, sf::Keyboard *key)
+void Button::onClick( sf::Vector2i mouse_pos, const sf::Event &/*event*/, const sf::Keyboard &key)
 {
-    assert( key );
-
     if ( !this->isOnFocus( mouse_pos) )
     {
         this->setState( Normal_);
@@ -105,7 +106,7 @@ void Button::onClick( sf::Vector2i mouse_pos, sf::Event */*event*/, sf::Keyboard
     }
 }
 
-void Button::onRelease( sf::Vector2i mouse_pos, sf::Event */*event*/, sf::Keyboard */*key*/)
+void Button::onRelease( sf::Vector2i mouse_pos, const sf::Event &/*event*/, const sf::Keyboard &/*key*/)
 {
     if ( this->isOnFocus( mouse_pos) )
     {
@@ -168,6 +169,7 @@ void Button::draw( sf::RenderWindow &window)
 
 }
 
+// TODO common actions to private function
 
 void Animation::animNormal( Button &/*button*/, sf::RenderWindow &/*window*/)
 {

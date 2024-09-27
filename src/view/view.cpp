@@ -84,7 +84,7 @@ const std::list<AWindow *> &View::getWindows() const
 }
 
 
-const ButtonsManager &View::getButtonsManager() const
+ButtonsManager &View::getButtonsManager()
 {
     return manager_;
 }

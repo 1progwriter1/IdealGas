@@ -29,7 +29,7 @@ public:
     AWindow *getWindow();
 
     const std::list<AWindow *> &getWindows() const;
-    const ButtonsManager &getButtonsManager() const;
+    ButtonsManager &getButtonsManager();
 
     void display();
     void clear( sf::Color color = sf::Color::Black);
@@ -37,7 +37,7 @@ public:
 };
 
 
-void createWindows( View &view);
+void createWindows( View &view, std::list<AMolecule *> *gas);
 
 
 #endif // VIEW_CLASS_FUNCTIONS

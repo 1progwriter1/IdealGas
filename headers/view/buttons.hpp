@@ -82,9 +82,9 @@ public:
 
     sf::RectangleShape &getClearShape();
 
-    void onClick  ( sf::Vector2i mouse_pos, sf::Event *event, sf::Keyboard *key);
-    void onHover  ( sf::Vector2i mouse_pos, sf::Event *event, sf::Keyboard *key);
-    void onRelease( sf::Vector2i mouse_pos, sf::Event *event, sf::Keyboard *key);
+    void onClick  ( sf::Vector2i mouse_pos, const sf::Event &event, const sf::Keyboard &key);
+    void onHover  ( sf::Vector2i mouse_pos, const sf::Event &event, const sf::Keyboard &key);
+    void onRelease( sf::Vector2i mouse_pos, const sf::Event &event, const sf::Keyboard &key);
     void draw( sf::RenderWindow &window);
 
     void setLightInd( size_t ind);
@@ -95,6 +95,8 @@ private:
     void setSprites();
 };
 
+
 void createButtons( ButtonsManager &manager, GasModel *model);
+
 
 #endif // BUTTONS_FUNCTIONS
