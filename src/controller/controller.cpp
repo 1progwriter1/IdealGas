@@ -49,6 +49,9 @@ void Controller::createWindows()
 {
     WindowMolecules *molecules = new WindowMolecules( view_->getWidth(), view_->getHeight(), model_->getGas(), this);
     view_->addWindow( molecules);
+
+    WindowTemp *temp = new WindowTemp( 300, 150, 0, view_->getHeight());
+    view_->addWindow( temp);
 }
 
 
@@ -57,5 +60,14 @@ void Controller::proceedWindows( const sf::Event &event, const sf::Keyboard &key
     for ( auto &window : view_->getWindows() )
     {
         window->proceedButtons( view_->getMainWindow(), event, key);
+    }
+}
+
+
+void Controller::drawWindows()
+{
+    for ( const auto &window : view_->getWindows() )
+    {
+        window->draw( view_->getMainWindow());
     }
 }

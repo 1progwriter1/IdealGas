@@ -36,11 +36,7 @@ int main()
 
             ctrl.proceedModel();
             ctrl.proceedWindows( event, key);
-
-            for ( const auto &window : view.getWindows() )
-            {
-                window->draw( view.getMainWindow());
-            }
+            ctrl.drawWindows();
 
             view.display();
         }
@@ -48,6 +44,7 @@ int main()
     {
         exc->dumpInfo();
         delete exc;
+        return ERROR;
     }
 
     return SUCCESS;

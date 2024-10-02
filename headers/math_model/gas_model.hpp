@@ -5,6 +5,7 @@
 #include <list>
 #include <math_model/amolecule.hpp>
 #include <data.hpp>
+#include <my_exceptions/my_exceptions.hpp>
 
 
 class GasModel

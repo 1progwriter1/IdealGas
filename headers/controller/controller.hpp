@@ -24,6 +24,7 @@ public:
     void addButtonCmd( ButtonCommands cmd);
     void createButtons();
     void createWindows();
+    void drawWindows();
 
 };
 

@@ -2,7 +2,7 @@
 #define MY_EXCEPTIONS
 
 
-#define MY_EXCEPTION( arg, reason)  my_std::my_exception( arg, __FILE__, __LINE__, __FUNC__, reason)
+#define MY_EXCEPTION( arg, reason)  my_std::my_exception( arg, reason, __FILE__, __LINE__, (const char *)__func__)
 
 
 #include <exception>
