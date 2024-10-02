@@ -1,19 +1,19 @@
-#include "view/buttons.hpp"
-#include "view/abutton.hpp"
+#include "windows_manager/buttons.hpp"
+#include "windows_manager/abutton.hpp"
 #include <cstddef>
 #include <cstdio>
 #include <cassert>
-#include "view/buttons_img.hpp"
-#include "math_model/gas_model.hpp"
+#include "windows_manager/buttons_img.hpp"
 
 
-Button::Button( const ButtonData &init_data, ButtonId init_id, GasModel *model)
+Button::Button( const ButtonData &init_data, ButtonId init_id, Controller *ctrl)
     :   AButton( init_data.pos_x, init_data.pos_y),
-        state_( Normal_), id_( init_id), light_ind( 0), model_( model), data_( init_data),
+        state_( Normal_), id_( init_id), data_( init_data),
         clearShape_( sf::Vector2f( float( init_data.width), float( init_data.height))),
+        ctrl_( ctrl),
         animation( 0, Normal_)
 {
-    assert( model );
+    assert( ctrl );
 
     sprites_  = new sf::Sprite[NUMBER_OF_ICONS];
     textures_ = new sf::Texture[NUMBER_OF_ICONS];
@@ -94,11 +94,11 @@ void Button::onClick( sf::Vector2i mouse_pos, const sf::Event &/*event*/, const 
     switch ( this->id_ )
     {
         case ButtonAddMolecule:
-            model_->addRandomMolecule();
+            ctrl_->addButtonCmd( CmdAddMolecule);
             break;
 
         case ButtonRemoveMolecule:
-            model_->removeMolecule();
+            ctrl_->addButtonCmd( CmdRemoveMolecule);
             break;
 
         default:
@@ -117,27 +117,10 @@ void Button::onRelease( sf::Vector2i mouse_pos, const sf::Event &/*event*/, cons
     }
 }
 
-void createButtons( ButtonsManager &manager, GasModel *model)
-{
-    assert( model );
-
-    Button *add_button = new Button( {0, 0, 64, 64}, ButtonAddMolecule, model);
-    manager.addButton( add_button);
-
-    Button *remove_button = new Button( {64, 0, 64, 64}, ButtonRemoveMolecule, model);
-    manager.addButton( remove_button);
-}
-
 
 sf::RectangleShape &Button::getClearShape()
 {
     return clearShape_;
-}
-
-
-void Button::setLightInd( size_t ind)
-{
-    light_ind = ind;
 }
 
 

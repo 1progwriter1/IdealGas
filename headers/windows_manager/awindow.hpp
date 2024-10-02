@@ -12,6 +12,8 @@ public:
     virtual ~AWindow() = default;
 
     virtual void draw( sf::RenderWindow &window) = 0;
+    virtual void proceedButtons( const sf::RenderWindow &window, const sf::Event &event, const sf::Keyboard &key) {};
+    virtual void createButtons() {};
 };
 
 

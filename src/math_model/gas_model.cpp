@@ -83,3 +83,26 @@ std::list<AMolecule *> *GasModel::getGas()
 {
     return &gas_;
 }
+
+
+void GasModel::setCoordSys( CoordinateSys *c_sys)
+{
+    c_sys_ = c_sys;
+}
+
+
+
+void GasModel::proceedCmd( ButtonCommands cmd)
+{
+    switch ( cmd )
+    {
+        case CmdAddMolecule:
+            this->addRandomMolecule();
+            break;
+        case CmdRemoveMolecule:
+            this->removeMolecule();
+            break;
+        default:
+            assert( 0 );
+    }
+}

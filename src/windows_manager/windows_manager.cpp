@@ -1,6 +1,6 @@
-#include <view/view.hpp>
+#include <windows_manager/windows_manager.hpp>
 #include <cassert>
-#include <view/windows.hpp>
+#include <windows_manager/windows.hpp>
 
 
 View::View( unsigned int init_width, unsigned int init_height, const char *label /*"hello"*/)
@@ -48,13 +48,6 @@ void View::draw()
     {
         window->draw( main_window_);
     }
-}
-
-
-void createWindows( View &view, std::list<AMolecule *> *gas)
-{
-    WindowMolecules *molecules = new WindowMolecules( view.getWidth(), view.getHeight(), gas);
-    view.addWindow( molecules);
 }
 
 

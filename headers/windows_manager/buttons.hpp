@@ -4,8 +4,7 @@
 #include "abutton.hpp"
 #include <SFML/Graphics.hpp>
 #include <cstddef>
-#include "buttons_manager.hpp"
-#include "math_model/gas_model.hpp"
+#include <controller/controller.hpp>
 
 
 enum ButtonId
@@ -53,21 +52,19 @@ struct ButtonData
 
 class Button : public AButton
 {
-protected:
     States state_;
     ButtonId id_;
-
-    size_t light_ind;
 
     sf::Sprite *sprites_;
     sf::Texture *textures_;
 
-    GasModel *model_;
     ButtonData data_;
     sf::RectangleShape clearShape_;
 
+    Controller *ctrl_;
+
 public:
-    Button( const ButtonData &init_data, ButtonId init_id, GasModel *model);
+    Button( const ButtonData &init_data, ButtonId init_id, Controller *ctrl);
     ~Button();
 
 
@@ -87,16 +84,11 @@ public:
     void onRelease( sf::Vector2i mouse_pos, const sf::Event &event, const sf::Keyboard &key);
     void draw( sf::RenderWindow &window);
 
-    void setLightInd( size_t ind);
-
     class Animation animation;
 
 private:
     void setSprites();
 };
-
-
-void createButtons( ButtonsManager &manager, GasModel *model);
 
 
 #endif // BUTTONS_FUNCTIONS

@@ -2,7 +2,7 @@
 #define BUTTONS_MANAGER
 
 #include "abutton.hpp"
-#include <view/awindow.hpp>
+#include <windows_manager/awindow.hpp>
 #include <vector>
 #include <math_model/gas_model.hpp>
 

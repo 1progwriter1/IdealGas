@@ -1,5 +1,5 @@
-#include "view/buttons_manager.hpp"
-#include "view/abutton.hpp"
+#include "windows_manager/buttons_manager.hpp"
+#include "windows_manager/abutton.hpp"
 #include <cassert>
 #include <cstddef>
 

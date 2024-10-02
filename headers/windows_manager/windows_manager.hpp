@@ -2,10 +2,10 @@
 #define VIEW_CLASS_FUNCTIONS
 
 
-#include "view/awindow.hpp"
+#include "windows_manager/awindow.hpp"
 #include <SFML/Graphics.hpp>
 #include <list>
-#include <view/buttons_manager.hpp>
+#include <windows_manager/buttons_manager.hpp>
 
 
 class View
@@ -35,9 +35,6 @@ public:
     void clear( sf::Color color = sf::Color::Black);
     void draw();
 };
-
-
-void createWindows( View &view, std::list<AMolecule *> *gas);
 
 
 #endif // VIEW_CLASS_FUNCTIONS

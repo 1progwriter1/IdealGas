@@ -4,6 +4,7 @@
 
 #include <list>
 #include <math_model/amolecule.hpp>
+#include <data.hpp>
 
 
 class GasModel
@@ -18,11 +19,15 @@ public:
     CoordinateSys *c_sys_;
 
     void moveMolecules();
+
     AMolecule *addMolecule( AMolecule *molecule);
     void removeMolecule();
     AMolecule *addRandomMolecule();
     AMolecule *addMolecule( const Vector init_move_vec, MoleculeType init_type);
+    void proceedCmd( ButtonCommands cmd);
+
     std::list<AMolecule *> *getGas();
+    void setCoordSys( CoordinateSys *c_sys);
 };
 
 
